@@ -30,7 +30,7 @@ gem "activeadmin", github: "activeadmin/activeadmin", branch: "3-0-stable" # FIX
 
 # Required for ActiveAdmin
 gem "sassc-rails"
-gem "bootstrap", "~> 5.3"
+gem "bootstrap", "~> 5.3.3"
 
 # Plus integrations with:
 gem "devise"
