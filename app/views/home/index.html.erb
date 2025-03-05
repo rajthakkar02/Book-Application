@@ -1,9 +1,9 @@
 <div class="card" style="width: 18rem;">
-  <% @books.each do |book| %>
+  <% @books_seller.each do |book| %>
     <img src="..." class="card-img-top" alt="...">
     <div class="card-body">
-      <h5 class="card-title"><%= book.book_name %></h5>
-      <p class="card-text"><%= book.MRP %></p>
+      <h5 class="card-title"><%= book.book.book_name %></h5>
+      <p class="card-text"><%= book.seller_price %></p>
       <a href="#" class="btn btn-primary">Add to bag</a>
     </div>
   <% end %>

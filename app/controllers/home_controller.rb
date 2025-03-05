@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
   def index
-    @books = Book.all
+    @books_seller = BookSeller.all
   end
 end
