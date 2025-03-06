@@ -353,6 +353,8 @@ GEM
       logger
     ruby2_keywords (0.0.5)
     rubyzip (2.4.1)
+    sass-rails (6.0.0)
+      sassc-rails (~> 2.1, >= 2.1.1)
     sassc (2.4.0)
       ffi (~> 1.9)
     sassc-rails (2.1.2)
@@ -420,7 +422,7 @@ PLATFORMS
 DEPENDENCIES
   activeadmin!
   bootsnap
-  bootstrap (~> 5.3.3)
+  bootstrap (~> 5.0)
   brakeman
   cancancan
   capybara
@@ -432,11 +434,12 @@ DEPENDENCIES
   jbuilder
   jquery-rails
   pg (~> 1.1)
+  popper_js (~> 2.11.8)
   puma (>= 5.0)
   pundit
   rails (~> 7.2.2, >= 7.2.2.1)
   rubocop-rails-omakase
-  sassc-rails
+  sass-rails
   selenium-webdriver
   sprockets-rails
   stimulus-rails

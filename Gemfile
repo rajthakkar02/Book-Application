@@ -25,13 +25,14 @@ gem "jbuilder"
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"
 
+gem "sass-rails"
+gem "bootstrap", "~> 5.0"
+gem "popper_js", "~> 2.11.8"
+
 # New version released next week
 gem "activeadmin", github: "activeadmin/activeadmin", branch: "3-0-stable" # FIXME: revert to stable
 
 # Required for ActiveAdmin
-gem "sassc-rails"
-gem "bootstrap", "~> 5.3.3"
-
 # Plus integrations with:
 gem "devise"
 gem "cancancan"
