@@ -1,10 +1,25 @@
-<% @books_seller.each do |item| %>
-  <div class="card" style="width: 18rem;">
-    <img src="..." class="card-img-top" alt="...">
-    <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-      <a href="#" class="btn btn-primary">Go somewhere</a>
+<% if !user_signed_in? || current_user.role == "customer"%>
+  <% @books_seller.each do |book| %>
+    <div class="card d-inline-flex justify-content-start flex-direction: row mx-3 mb-2" style="width: 18rem;">
+      <%= image_tag url_for(book.book.book_image) , class: "card-img-top p-1" , alt: "book-image" %>
+      <div class="card-body">
+        <h5 class="card-title d-flex justify-content-center"><%= book.book.book_name  %></h5>
+        <p class="card-text d-flex justify-content-center">₹<%= book.seller_price %></p>
+        <a href="#" class="btn btn-primary d-flex justify-content-center">Add to Bag</a>
+      </div>
     </div>
-  </div>
+  <% end %>
+<% end %>
+
+<% if user_signed_in? && current_user.role == "author"%>
+  <% @books.each do |book| %>
+    <div class="card d-inline-flex justify-content-start flex-direction: row mx-3 mb-2 " style="width: 18rem;">
+      <%= image_tag url_for(book.book_image) , class: "card-img-top p-1" , alt: "book-image" %>
+      <div class="card-body">
+        <h5 class="card-title d-flex justify-content-center"><%= book.book_name  %></h5>
+        <p class="card-text d-flex justify-content-center">₹<%= book.MRP %></p>
+        <a href="#" class="btn btn-primary d-flex justify-content-center">Show</a>
+      </div>
+    </div>
+  <% end %>
 <% end %>

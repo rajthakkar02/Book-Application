@@ -26,8 +26,12 @@ gem "jbuilder"
 # gem "bcrypt", "~> 3.1.7"
 
 gem "sass-rails"
+
 gem "bootstrap", "~> 5.0"
+
 gem "popper_js", "~> 2.11.8"
+
+gem "byebug"
 
 # New version released next week
 gem "activeadmin", github: "activeadmin/activeadmin", branch: "3-0-stable" # FIXME: revert to stable
