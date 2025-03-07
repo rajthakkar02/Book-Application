@@ -1,0 +1,20 @@
+<%= image_tag url_for(@book.book_image.representation(resize_to_limit: [305,466])) , class: "rounded float-start", alt: "book-image"%>
+
+<div class="d-flex justify-content-start flex-direction: row mx-4 mb-2">
+  <h1><%= @book.book_name %></h1>
+  <p><strong>MRP: </strong>₹<%= @book.MRP %></p>
+  <p><strong>Pages: </strong><%= @book.pages %></p>
+  <p><strong>Publication Name: </strong><%= @book.publisher_name %></p>
+  <p><strong>Publication Date: </strong><%= @book.publication_date%></p>
+  <p><strong>Language: </strong> <%= @book.language %></p>
+  <p><strong>Product Description: </strong></p>
+  <p><%=  @book.description %></p>
+</div>
+
+<div class="d-flex justify-content-center">
+  <%= link_to "Back", root_path, class: "btn btn-primary ms-5" %>
+  <% if user_signed_in? && current_user.role == "author" %>
+    <%= link_to "Edit", edit_book_path(@book), class: "btn btn-warning ms-5" %>
+    <%= link_to "Delete", book_path(@book), data: { turbo_method: "delete" , turbo_confirm: "Are you sure ?" }, class: "btn btn-danger ms-5" , method: :delete %>
+  <% end %>
+</div>
