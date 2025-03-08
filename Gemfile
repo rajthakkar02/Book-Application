@@ -33,6 +33,8 @@ gem "popper_js", "~> 2.11.8"
 
 gem "byebug"
 
+gem "font-awesome-sass"
+
 # New version released next week
 gem "activeadmin", github: "activeadmin/activeadmin", branch: "3-0-stable" # FIXME: revert to stable
 

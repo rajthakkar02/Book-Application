@@ -1,4 +1,6 @@
-<%= image_tag url_for(@book.book_image.representation(resize_to_limit: [305,466])) , class: "rounded float-start", alt: "book-image"%>
+<%= link_to raw('<i class="fa-solid fa-arrow-left fa-xl"></i>'), root_path , class: "d-flex justify-content-start" %>
+
+<%= image_tag url_for(@book.book_image.representation(resize_to_limit: [305,466])) , class: "rounded float-start mt-3", alt: "book-image"%>
 
 <div class="d-flex justify-content-start flex-direction: row mx-4 mb-2">
   <h1><%= @book.book_name %></h1>

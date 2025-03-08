@@ -1,10 +1,10 @@
 <% if !user_signed_in? || current_user.role == "customer"%>
-  <% @books_seller.each do |book| %>
+  <% @books_seller.each do |books_seller| %>
     <div class="card d-inline-flex justify-content-start flex-direction: row mx-3 mb-2" style="width: 18rem;">
-      <%= image_tag url_for(book.book.book_image) , class: "card-img-top p-1" , alt: "book-image" %>
+      <%= image_tag url_for(books_seller.book.book_image) , class: "card-img-top p-1" , alt: "book-image" %>
       <div class="card-body">
-        <h5 class="card-title d-flex justify-content-center"><%= book.book.book_name  %></h5>
-        <p class="card-text d-flex justify-content-center">₹<%= book.seller_price %></p>
+        <h5 class="card-title d-flex justify-content-center"><%= books_seller.book.book_name  %></h5>
+        <p class="card-text d-flex justify-content-center">₹<%= books_seller.seller_price %></p>
         <a href="#" class="btn btn-primary d-flex justify-content-center">Add to Bag</a>
       </div>
     </div>

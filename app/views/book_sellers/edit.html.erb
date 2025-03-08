@@ -1,0 +1,31 @@
+<% if user_signed_in? && current_user.role == "seller" %>
+  <%= link_to raw('<i class="fa-solid fa-arrow-left fa-xl"></i>'), book_seller_path(@book_seller) %>
+  <h2 class="my-3">Edit Book</h2>
+  <%= render "shared/error" , obj: @book_seller %>
+  <%= form_with model: @book_seller, local: true do |form| %>
+    <div class="mb-3">
+      <%= form.label :book_id, "Choose a Book" , class: "form-label" %>
+      <% book_array = Book.all.map { |book| [book.book_name, book.id] } %>
+      <%= form.select :book_id , book_array , { prompt: "Please select a book" }, class: "form-select" %>
+    </div>
+
+    <div class="form-group mb-3">
+      <%= form.hidden_field :user_id, value: current_user.id, class: "form-control" %>
+    </div>
+
+    <div class="form-group mb-3">
+      <%= form.label :seller_price, "Selling Price" ,class: "form-label"%>
+      <%= form.number_field :seller_price ,class: "form-control" , min: 1 %>
+    </div>
+
+    <div class="form-group mb-3">
+      <%= form.label :quantity, "Quantity" ,class: "form-label"%>
+      <%= form.number_field :quantity ,class: "form-control" , min: 1 %>
+    </div>
+
+    <div class="form-group mb-3">
+      <%= form.submit "Update Book", class: "form-control btn btn-primary" %>
+    </div>
+  <% end %>
+
+<% end %>

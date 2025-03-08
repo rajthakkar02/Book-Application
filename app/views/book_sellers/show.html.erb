@@ -1,0 +1,22 @@
+<%= link_to raw('<i class="fa-solid fa-arrow-left fa-xl"></i>'), book_sellers_path , class: "d-flex justify-content-start" %>
+
+<%= image_tag url_for(@book_seller.book.book_image.representation(resize_to_limit: [305,466])) , class: "rounded float-start mt-3", alt: "book-image" %>
+
+<div class="d-flex justify-content-start flex-direction: row mx-4 mb-2">
+  <h1><%= @book_seller.book.book_name %></h1>
+  <p><strong>Price: </strong>₹<%= @book_seller.seller_price %></p>
+  <p><strong>Pages: </strong><%= @book_seller.book.pages%></p>
+  <p><strong>Publication Name: </strong><%= @book_seller.book.publisher_name %></p>
+  <p><strong>Publication Date: </strong><%= @book_seller.book.publication_date%></p>
+  <p><strong>Language: </strong> <%= @book_seller.book.language %></p>
+  <p><strong>Product Description: </strong></p>
+  <p><%=  @book_seller.book.description %></p>
+</div>
+
+<div class="d-flex justify-content-center">
+  <%= link_to "Back", book_sellers_path, class: "btn btn-primary ms-5" %>
+  <% if user_signed_in? && current_user.role == "seller" %>
+    <%= link_to "Edit", edit_book_seller_path(@book_seller), class: "btn btn-warning ms-5" %>
+    <%= link_to "Delete", book_seller_path(@book_seller), data: { turbo_method: "delete" , turbo_confirm: "Are you sure ?" }, class: "btn btn-danger ms-5" %>
+  <% end %>
+</div>
