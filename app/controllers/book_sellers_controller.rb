@@ -35,6 +35,13 @@ class BookSellersController < ApplicationController
     end
   end
 
+  def destroy
+    @book_seller = BookSeller.find(params[:id])
+    @book_seller.destroy
+    flash[:notice] = "Book Seller deleted successfully"
+    redirect_to root_path
+  end
+
   private
 
   def book_seller_params

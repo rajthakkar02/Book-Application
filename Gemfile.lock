@@ -444,6 +444,7 @@ DEPENDENCIES
   puma (>= 5.0)
   pundit
   rails (~> 7.2.2, >= 7.2.2.1)
+  ransack
   rubocop-rails-omakase
   sass-rails
   selenium-webdriver
@@ -452,7 +453,7 @@ DEPENDENCIES
   turbo-rails
   tzinfo-data
   web-console
-  will_paginate
+  will_paginate (~> 4.0, >= 4.0.1)
 
 BUNDLED WITH
    2.6.2

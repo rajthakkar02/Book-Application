@@ -1,13 +1,15 @@
 <% if !user_signed_in? || current_user.role == "customer"%>
   <% @books_seller.each do |books_seller| %>
-    <div class="card d-inline-flex justify-content-start flex-direction: row mx-3 mb-2" style="width: 18rem;">
-      <%= image_tag url_for(books_seller.book.book_image) , class: "card-img-top p-1" , alt: "book-image" %>
-      <div class="card-body">
-        <h5 class="card-title d-flex justify-content-center"><%= books_seller.book.book_name  %></h5>
-        <p class="card-text d-flex justify-content-center">₹<%= books_seller.seller_price %></p>
-        <a href="#" class="btn btn-primary d-flex justify-content-center">Add to Bag</a>
+    <%= link_to book_path(books_seller.book), class: "card-link text-decoration-none text-dark" do %>
+      <div class="card d-inline-flex justify-content-start flex-direction: row mx-3 mb-2" style="width: 18rem;">
+        <%= image_tag url_for(books_seller.book.book_image) , class: "card-img-top p-1" , alt: "book-image" %>
+        <div class="card-body">
+          <h5 class="card-title d-flex justify-content-center"><%= books_seller.book.book_name  %></h5>
+          <p class="card-text d-flex justify-content-center mb-2">₹<%= books_seller.seller_price %></p>
+          <a href="#" class="btn btn-primary d-flex justify-content-center">Add to Bag</a>
+        </div>
       </div>
-    </div>
+    <% end %>
   <% end %>
 <% end %>
 
@@ -17,7 +19,7 @@
       <%= image_tag url_for(book.book_image) , class: "card-img-top p-1" , alt: "book-image" %>
       <div class="card-body">
         <h5 class="card-title d-flex justify-content-center"><%= book.book_name  %></h5>
-        <p class="card-text d-flex justify-content-center">₹<%= book.MRP %></p>
+        <p class="card-text d-flex justify-content-center mb-2">₹<%= book.MRP %></p>
         <%= link_to "Show" , book_path(book) ,class: "btn btn-primary d-flex justify-content-center" %>
       </div>
     </div>

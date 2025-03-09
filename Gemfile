@@ -35,6 +35,10 @@ gem "byebug"
 
 gem "font-awesome-sass"
 
+gem "will_paginate", "~> 4.0", ">= 4.0.1"
+
+gem "ransack"
+
 # New version released next week
 gem "activeadmin", github: "activeadmin/activeadmin", branch: "3-0-stable" # FIXME: revert to stable
 
