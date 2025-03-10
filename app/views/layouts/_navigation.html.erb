@@ -37,8 +37,12 @@
       </ul>
       <form class="d-flex" role="search">
         <% if user_signed_in? %>
+          <% if current_user.role == "customer" %>
+            <%= link_to raw('<i class="fa-solid fa-bag-shopping fa-2xl"></i>') ,  root_path , class: "btn btn-light btn-md me-3"%>
+          <% end %>
           <%= link_to "Log out", destroy_user_session_path , data: { turbo_method: "delete" }, class: "btn btn-danger text-decoration-none" %>
         <% else %>
+          <%= link_to raw('<i class="fa-solid fa-bag-shopping fa-2xl"></i>') ,  root_path , class: "btn btn-light btn-md me-3"%>
           <%= link_to "Sign up" , new_user_registration_path, class: "btn btn-primary me-2 text-decoration-none" %>
           <%= link_to "Login" , user_session_path , class: "btn btn-warning text-decoration-none"%>
         <% end %>
