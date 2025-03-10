@@ -5,7 +5,8 @@
         <%= image_tag url_for(books_seller.book.book_image) , class: "card-img-top p-1" , alt: "book-image" %>
         <div class="card-body">
           <h5 class="card-title d-flex justify-content-center"><%= books_seller.book.book_name  %></h5>
-          <p class="card-text d-flex justify-content-center mb-2">₹<%= books_seller.seller_price %></p>
+          <p class="card-text d-flex justify-content-center"><strong><%= books_seller.book.user.name %></strong></p>
+          <p class="card-text d-flex justify-content-center mb-2 fs-5">₹<%= books_seller.seller_price %></p>
           <a href="#" class="btn btn-primary d-flex justify-content-center">Add to Bag</a>
         </div>
       </div>
@@ -19,7 +20,7 @@
       <%= image_tag url_for(book.book_image) , class: "card-img-top p-1" , alt: "book-image" %>
       <div class="card-body">
         <h5 class="card-title d-flex justify-content-center"><%= book.book_name  %></h5>
-        <p class="card-text d-flex justify-content-center mb-2">₹<%= book.MRP %></p>
+        <p class="card-text d-flex justify-content-center mb-2 fs-5">₹<%= book.MRP %></p>
         <%= link_to "Show" , book_path(book) ,class: "btn btn-primary d-flex justify-content-center" %>
       </div>
     </div>

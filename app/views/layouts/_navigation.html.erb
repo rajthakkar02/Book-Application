@@ -14,7 +14,7 @@
             <%= link_to "Add Book" , new_book_path , class: "nav-link" %>
           <% elsif user_signed_in? && current_user.role == "seller" %>
             <%= link_to "Books" , book_sellers_path , class: "nav-link" %>
-          <% else %>
+          <% elsif user_signed_in? && current_user.role == "customer" %>
             <%= link_to "Order" , root_path , class: "nav-link" %>
           <% end %>
         </li>

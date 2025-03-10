@@ -8,4 +8,7 @@ class User < ApplicationRecord
   enum role: { customer: 0, seller: 1, author: 2 }
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
+  validates :name, presence: true
+  validates :phone_number, presence: true, numericality: { only_integer: true }, length: { is: 10 }
 end

@@ -4,6 +4,7 @@
       <%= image_tag url_for(book_seller.book.book_image) , class: "card-img-top p-1" , alt: "book-image" %>
       <div class="card-body">
         <h5 class="card-title d-flex justify-content-center"><%= book_seller.book.book_name  %></h5>
+        <p class="card-text d-flex justify-content-center"><strong><%= book_seller.book.user.name %></strong></p>
         <p class="card-text d-flex justify-content-center">₹<%= book_seller.seller_price %></p>
         <%= link_to "Show" , book_seller_path(book_seller) ,class: "btn btn-primary d-flex justify-content-center" %>
       </div>
