@@ -12,6 +12,9 @@
       </div>
     <% end %>
   <% end %>
+  <div class="flickr_pagination d-flex justify-content-center mt-3">
+    <%= will_paginate @books_seller %>
+  </div>
 <% end %>
 
 <% if user_signed_in? && current_user.role == "author"%>
@@ -25,4 +28,7 @@
       </div>
     </div>
   <% end %>
+  <div class="flickr_pagination d-flex justify-content-center mt-3">
+    <%= will_paginate @books %>
+  </div>
 <% end %>

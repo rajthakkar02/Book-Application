@@ -5,9 +5,13 @@
       <div class="card-body">
         <h5 class="card-title d-flex justify-content-center"><%= book_seller.book.book_name  %></h5>
         <p class="card-text d-flex justify-content-center"><strong><%= book_seller.book.user.name %></strong></p>
-        <p class="card-text d-flex justify-content-center">₹<%= book_seller.seller_price %></p>
+        <p class="card-text d-flex justify-content-center">Quantity: <%= book_seller.quantity %></p>
+        <p class="card-text d-flex justify-content-center fs-5">₹<%= book_seller.seller_price %></p>
         <%= link_to "Show" , book_seller_path(book_seller) ,class: "btn btn-primary d-flex justify-content-center" %>
       </div>
     </div>
   <% end %>
+  <div class="flickr_pagination d-flex justify-content-center mt-3">
+    <%= will_paginate @book_sellers %>
+  </div>
 <% end %>

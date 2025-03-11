@@ -1,6 +1,6 @@
 class BookSellersController < ApplicationController
   def index
-    @book_sellers = BookSeller.all
+    @book_sellers = BookSeller.paginate(page: params[:page], per_page: 30)
   end
 
   def new
@@ -11,7 +11,7 @@ class BookSellersController < ApplicationController
     @book_seller = BookSeller.new(book_seller_params)
     if @book_seller.save
       flash[:notice] = "Book Seller created successfully"
-      redirect_to root_path
+      redirect_to book_sellers_path
     else
       render :new
     end
@@ -39,7 +39,7 @@ class BookSellersController < ApplicationController
     @book_seller = BookSeller.find(params[:id])
     @book_seller.destroy
     flash[:notice] = "Book Seller deleted successfully"
-    redirect_to root_path
+    redirect_to book_sellers_path
   end
 
   private
