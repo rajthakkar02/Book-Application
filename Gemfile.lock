@@ -1,9 +1,9 @@
 GIT
   remote: https://github.com/activeadmin/activeadmin.git
-  revision: 73b88e15ed7198cdca1af32addac855873db950a
+  revision: edcfa52fbe7899636aba413899c66b3cfc65a149
   branch: 3-0-stable
   specs:
-    activeadmin (3.2.5)
+    activeadmin (3.3.0)
       arbre (~> 1.2, >= 1.2.1)
       csv
       formtastic (>= 3.1)
@@ -269,7 +269,7 @@ GEM
     pundit (2.5.0)
       activesupport (>= 3.0.0)
     racc (1.8.1)
-    rack (3.1.11)
+    rack (3.1.12)
     rack-session (2.1.0)
       base64 (>= 0.1.0)
       rack (>= 3.0.0)
