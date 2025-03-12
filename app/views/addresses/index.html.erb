@@ -1,0 +1,18 @@
+<% @addresses.each do |address| %>
+  <div class="d-inline-flex justify-content-start flex-direction: row card mx-3 mb-2" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title fs-4"><%= address.address_type %></h5>
+      <address>
+        <p class="card-text mt-3 mb-0"><%= address.address_line1 %></p>
+        <p class="card-text mt-0 mb-0"><%= address.landmark %></p>
+        <p class="card-text mt-0 mb-0"><%= address.address_line2 %></p>
+        <p class="card-text mt-0 mb-0"><%= address.city %></p>
+        <p class="card-text mt-0 mb-0"><%= address.state %></p>
+        <p class="card-text mt-0 mb-3"><%= address.pincode %></p>
+      </address>
+
+      <%= link_to "Update Address" , edit_address_path(address) , class: "btn btn-primary" %>
+      <%= link_to "Delete Address" , address_path(address) , data: {turbo_method: "delete" , turbo_confirm: "Are you sure?" } , class: "btn btn-danger mt-3" %>
+    </div>
+  </div>
+<% end %>
