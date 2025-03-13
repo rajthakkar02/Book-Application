@@ -16,8 +16,68 @@
 
 <div class="d-flex justify-content-center">
   <%= link_to "Back", root_path, class: "btn btn-primary ms-5" %>
+  <% if !user_signed_in? %>
+    <%= link_to "Add to Bag" , root_path , class: "btn btn-primary ms-5" %>
+  <% elsif user_signed_in? && current_user.role == "customer" %>
+    <%= link_to "Add to Bag" , root_path , class: "btn btn-primary ms-5" %>
+  <% end %>
   <% if user_signed_in? && current_user.role == "author" %>
     <%= link_to "Edit", edit_book_path(@book), class: "btn btn-warning ms-5" %>
     <%= link_to "Delete", book_path(@book), data: { turbo_method: "delete" , turbo_confirm: "Are you sure ?" }, class: "btn btn-danger ms-5" , method: :delete %>
   <% end %>
 </div>
+
+<div class="my-5">
+  <% if user_signed_in? && current_user.role == "customer" %>
+
+    <h3>Leave a Rieview</h3>
+
+    <%= form_with model: [@book, Feedback.new], local: true do |f| %>
+
+      <div class="form-group mb-3">
+        <%= f.hidden_field :user_id, value: @book.user_id, class: "form-control" %>
+      </div>
+
+      <div class="form-group mb-3">
+        <%= f.hidden_field :current_user, value: current_user.id, class: "form-control" %>
+      </div>
+
+      <div class="form-group mb-3">
+        <%= f.hidden_field :book_id, value: @book.id %>
+      </div>
+
+      <div class="form-group mb-3">
+        <%= f.label :rating, "Rating", class: "form-label" %>
+        <%= f.number_field :rating, class: "form-control", min: 1 , max: 5 %>
+      </div>
+
+      <div class="form-group mb-3">
+        <%= f.label :comment, "Comment", class: "form-label" %>
+        <%= f.text_area :comment, class: "form-control" %>
+      </div>
+
+      <div class="form-group mb-3">
+        <%= f.submit "Submit Feedback", class: "btn btn-primary" %>
+      </div>
+    <% end %>
+
+  <% end %>
+
+</div>
+
+<% @book.feedbacks.each do |feedback| %>
+  <div class="card my-5">
+    <div class="card-header">
+      <%= feedback.name %>
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">Rating: <%= feedback.rating %></h5>
+      <p class="card-text">Comment: <%= feedback.comment %></p>
+      <% if user_signed_in? && feedback.current_user == current_user.id %>
+        <%= link_to "Update Feedback" , edit_book_feedback_path(feedback) , class: "btn btn-primary" %>
+        <%= link_to "Delete Feedback" , book_feedback_path(feedback) , data: { turbo_method: "delete" , turbo_confirm: "Are you sure ?" }, class: "btn btn-danger" , method: :delete %>
+      <% end %>
+    </div>
+  </div>
+
+<% end %>

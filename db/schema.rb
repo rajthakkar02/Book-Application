@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_03_11_131438) do
+ActiveRecord::Schema[7.2].define(version: 2025_03_13_065510) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -105,6 +105,19 @@ ActiveRecord::Schema[7.2].define(version: 2025_03_11_131438) do
     t.integer "user_id"
   end
 
+  create_table "feedbacks", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "book_id", null: false
+    t.text "comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "rating"
+    t.string "name"
+    t.integer "current_user"
+    t.index ["book_id"], name: "index_feedbacks_on_book_id"
+    t.index ["user_id"], name: "index_feedbacks_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -124,4 +137,6 @@ ActiveRecord::Schema[7.2].define(version: 2025_03_11_131438) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "book_sellers", "books"
   add_foreign_key "book_sellers", "users"
+  add_foreign_key "feedbacks", "books"
+  add_foreign_key "feedbacks", "users"
 end
