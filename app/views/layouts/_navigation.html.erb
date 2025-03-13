@@ -43,6 +43,9 @@
           <% if current_user.role == "customer" %>
             <%= link_to raw('<i class="fa-solid fa-bag-shopping fa-2xl"></i>') ,  root_path , class: "btn btn-light btn-md me-3"%>
           <% end %>
+          <% if current_user.role == "author" %>
+            <i class="fa-solid fa-star fa-xl me-4  pt-3" style="color: #087ed9;"> <%= @rating %></i>
+          <% end %>
           <%= link_to "Log out", destroy_user_session_path , data: { turbo_method: "delete" }, class: "btn btn-danger text-decoration-none" %>
         <% else %>
           <%= link_to raw('<i class="fa-solid fa-bag-shopping fa-2xl"></i>') ,  root_path , class: "btn btn-light btn-md me-3"%>
