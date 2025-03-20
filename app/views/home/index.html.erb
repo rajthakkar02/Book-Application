@@ -1,15 +1,17 @@
 <% if !user_signed_in? || current_user.role == "customer"%>
   <% @books_seller.each do |books_seller| %>
-    <%= link_to book_path(books_seller.book), class: "card-link text-decoration-none text-dark" do %>
-      <div class="card d-inline-flex justify-content-start flex-direction: row mx-3 mb-2" style="width: 18rem;">
-        <%= image_tag url_for(books_seller.book.book_image) , class: "card-img-top p-1" , alt: "book-image" %>
-        <div class="card-body">
-          <h5 class="card-title d-flex justify-content-center"><%= books_seller.book.book_name  %></h5>
-          <p class="card-text d-flex justify-content-center"><strong><%= books_seller.book.user.name %></strong></p>
-          <p class="card-text d-flex justify-content-center mb-2 fs-5">₹<%= books_seller.seller_price %></p>
-          <a href="#" class="btn btn-primary d-flex justify-content-center">Add to Bag</a>
+    <% if books_seller.quantity > 0 %>
+      <%= link_to book_path(books_seller.book), class: "card-link text-decoration-none text-dark" do %>
+        <div class="card d-inline-flex justify-content-start flex-direction: row mx-3 mb-2" style="width: 18rem;">
+          <%= image_tag url_for(books_seller.book.book_image) , class: "card-img-top p-1" , alt: "book-image" %>
+          <div class="card-body">
+            <h5 class="card-title d-flex justify-content-center"><%= books_seller.book.book_name  %></h5>
+            <p class="card-text d-flex justify-content-center"><strong><%= books_seller.book.user.name %></strong></p>
+            <p class="card-text d-flex justify-content-center mb-2 fs-5">₹<%= books_seller.seller_price %></p>
+            <%= link_to "Add to Bag" , cart_item_add_path(books_seller.book_id) , data: {turbo_method: "post"} , class: "btn btn-primary d-flex justify-content-center" , method: :post %>
+          </div>
         </div>
-      </div>
+      <% end %>
     <% end %>
   <% end %>
   <div class="flickr_pagination d-flex justify-content-center mt-3">
