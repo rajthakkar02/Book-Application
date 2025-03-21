@@ -14,7 +14,7 @@
           <li class="list-group-item">
             <%= form_with(model: order, url: order_path(order), method: :patch, local: true) do |f| %>
               <%= f.label :order_status, "Update Order Status:" , class: "form-label mb-2" %>
-              <%= f.select :order_status, Order.order_statuses.keys, {promp: order.order_status}, class: "form-select mb-2" %>
+              <%= f.select :order_status, Order.order_statuses.keys, {prompt: order.order_status}, {class: "form-select mb-2" , required: true} %>
               <%= f.submit "Update", class: "btn btn-primary btn-sm" %>
             <% end %>
           </li>

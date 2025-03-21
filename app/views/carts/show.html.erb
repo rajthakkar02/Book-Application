@@ -22,7 +22,7 @@
           <div class="form-group mb-3">
             <%= form_with url: cart_item_path(item.id), method: :patch, local: true do |f| %>
               <%= f.label :quantity, "Quantity:" , class: "form-label" %>
-              <%= f.select :quantity, (1..item.book_seller.quantity).to_a, {prompt: "Please select the quantity you want." }, class: "form-control mb-3" %>
+              <%= f.select :quantity, (1..item.book_seller.quantity).to_a, {prompt: "Please select the quantity you want." }, {class: "form-control mb-3" , required: true} %>
 
               <%= f.submit "Update Quantity", class: "btn btn-primary" %>
             <% end %>

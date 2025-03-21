@@ -9,7 +9,9 @@ class Book < ApplicationRecord
   validates :MRP, presence: true, numericality: { greater_than: 0 }
   validates :pages, presence: true, numericality: { greater_than: 0 }
   validates :publisher_name, presence: true, length: { in: 1..50 }
+  validates :publication_date, presence: true
   validates :language, presence: true, length: { in: 1..50 }
+  validates :description, presence: true, length: { minimum: 10 }
 
   def self.ransackable_associations(auth_object = nil)
     ["book_image_attachment", "book_image_blob", "book_sellers", "user", "users"]

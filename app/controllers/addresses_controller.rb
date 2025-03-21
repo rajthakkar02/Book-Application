@@ -1,6 +1,8 @@
 class AddressesController < ApplicationController
+  before_action :authenticate_user!
+
   def index
-    @addresses = Address.all
+    @addresses = Address.all.order(:created_at)
   end
 
   def new
@@ -41,6 +43,6 @@ class AddressesController < ApplicationController
   private
 
   def address_params
-    params.require(:address).permit(:address_line1, :address_line2, :city, :state, :country, :pincode, :address_type, :user_id)
+    params.require(:address).permit(:address_line1, :address_line2, :landmark, :city, :state, :country, :pincode, :address_type, :user_id)
   end
 end

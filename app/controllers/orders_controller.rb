@@ -1,12 +1,12 @@
 class OrdersController < ApplicationController
   before_action :set_current_cart, only: %i[create]
-  before_action :authenticate_user!, only: %i[create index show destroy]
+  before_action :authenticate_user!
 
   def index
-    @orders = Order.where(current_user: current_user.id) if current_user.role == "customer"
+    @orders = Order.where(current_user: current_user.id).order(:created_at) if current_user.role == "customer"
     if current_user.role == "seller"
       @orders = Order.joins(order_items: { book_seller: :user })
-        .where(users: { id: current_user.id })
+        .where(users: { id: current_user.id }).order(:created_at)
         .distinct
     end
   end

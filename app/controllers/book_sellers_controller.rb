@@ -1,6 +1,8 @@
 class BookSellersController < ApplicationController
+  before_action :authenticate_user!
+
   def index
-    @book_sellers = BookSeller.paginate(page: params[:page], per_page: 30)
+    @book_sellers = BookSeller.paginate(page: params[:page], per_page: 30).order(:created_at)
   end
 
   def new
