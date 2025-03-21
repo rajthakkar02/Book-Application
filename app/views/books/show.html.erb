@@ -5,7 +5,11 @@
 <div class="d-flex justify-content-start flex-direction: row mx-4 mb-2">
   <h1><%= @book.book_name %></h1>
   <p><strong>Author Name: </strong><%= @book.user.name %></p>
-  <p><strong>MRP: </strong>₹<%= @book.MRP %></p>
+  <% if !user_signed_in? || current_user.role == "customer" %>
+    <p><strong>Price: </strong>₹<%= @book_seller.seller_price %></p>
+  <% else %>
+    <p><strong>MRP: </strong>₹<%= @book.MRP %></p>
+  <% end %>
   <p><strong>Pages: </strong><%= @book.pages %></p>
   <p><strong>Publication Name: </strong><%= @book.publisher_name %></p>
   <p><strong>Publication Date: </strong><%= @book.publication_date%></p>

@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  current_user: 1
+  address: one
+  total_price: 1
+  order_status: 1
+
+two:
+  current_user: 1
+  address: two
+  total_price: 1
+  order_status: 1

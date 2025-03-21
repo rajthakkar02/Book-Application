@@ -1,0 +1,34 @@
+<div class="container mt-5">
+  <div class="card shadow-lg border-0 rounded-4">
+    <div class="card-body p-5">
+      <h2 class="mb-4 text-center fw-bold text-primary">Order Confirmation</h2>
+
+      <div class="mb-4 p-4 bg-light rounded-3 shadow-sm">
+        <p class="fs-5 mb-2"><strong>Order ID:</strong> <span class="text-secondary"><%= @order.id %></span></p>
+        <p class="fs-5 mb-2"><strong>Total Amount:</strong> <span class="text-success fw-bold">₹<%= @order.total_price %></span></p>
+        <p class="fs-5 mb-0"><strong>Delivery Address:</strong> <span class="text-secondary"><%= @order.address.full_address %></span></p>
+      </div>
+
+      <h3 class="mt-4 mb-3 text-secondary fw-semibold">Order Items</h3>
+      <div class="list-group">
+        <% @order.order_items.each do |item| %>
+          <div class="list-group-item d-flex flex-column flex-md-row align-items-md-center justify-content-between border-0 shadow-sm mb-2 rounded-3 p-3">
+            <div class="d-flex align-items-center">
+              <%= image_tag url_for(item.book_seller.book.book_image), class: "rounded-3 shadow-sm me-3", style: "width: 80px; height: 100px; object-fit: cover;", alt: "Book Image" %>
+              <div>
+                <h5 class="mb-1 fw-semibold text-dark"><%= item.book_seller.book.book_name %></h5>
+                <p class="mb-1 text-muted">Price: <span class="text-success fw-semibold">₹<%= item.book_seller.seller_price %></span></p>
+                <p class="mb-0 text-muted">Quantity: <strong><%= item.quantity %></strong></p>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+
+      <div class="text-center mt-4">
+        <%= link_to "Back to Orders", orders_path, class: "btn btn-primary px-4 py-2 rounded-pill shadow-sm fw-semibold" %>
+         <%= link_to "Cancel Order" , order_path(@order) ,  data: {turbo_method: "delete" , turbo_confirm: "Are you sure you want to cancel the order?"} , class: "btn btn-danger px-4 py-2 rounded-pill shadow-sm fw-semibold" %>
+      </div>
+    </div>
+  </div>
+</div>

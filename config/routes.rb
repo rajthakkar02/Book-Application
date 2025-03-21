@@ -13,4 +13,5 @@ Rails.application.routes.draw do
   delete "clear_cart/:secret_id", to: "carts#destroy", as: "clear_cart"
   delete "cart_item/:id", to: "cart_items#destroy", as: "cart_item_delete"
   patch "cart_item/:id", to: "cart_items#update", as: "cart_item"
+  resources :orders
 end

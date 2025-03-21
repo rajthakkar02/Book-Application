@@ -35,11 +35,16 @@
     </div>
   <% end %>
 
+  <%= form_with url: orders_path, method: :post, local: true do |f| %>
+    <%= f.label :address_id, "Address", class: "form-label fw-bold fs-4" %>
+    <%= f.select :address_id, @addresses.map { |a| [a.full_address, a.id] }, { prompt: "Please select an address" },{ class: "form-control mb-3", required: user_signed_in? } %>
+
+    <%= f.submit "Place Order", class: "btn btn-success fw-bold mb-3" %>
+  <% end %>
+
   <p class="fs-4"><strong>Order Total:</strong> ₹<%= @current_cart.total_price %></p>
 
   <%= link_to "Clear Cart" , clear_cart_path(@current_cart.secret_id) , data: {turbo_method: "delete" , turbo_confirm: "Are you sure?"} , class: "btn btn-danger me-3" %>
-
-  <%= link_to "Proceed to checkout" , root_path , class: "btn btn-primary"%>
 
 <% else %>
   <p class="d-flex justify-content-center align-item-centers my-5 fs-4">Your cart is empty</p>

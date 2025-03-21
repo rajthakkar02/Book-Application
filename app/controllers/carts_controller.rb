@@ -2,6 +2,7 @@ class CartsController < ApplicationController
   before_action :set_current_cart, only: %i[show destroy]
 
   def show
+    @addresses = Address.where(user_id: current_user&.id)
   end
 
   def destroy
@@ -20,7 +21,7 @@ class CartsController < ApplicationController
   private
 
   def total_price
-    @current_cart.cart_items.book_seller.seller_price * @current_cart.cart_items.quantity
+    @current_cart.cart_items.sum { |item| item.book_seller.seller_price * item.quantity }
   end
 
   def set_current_cart
