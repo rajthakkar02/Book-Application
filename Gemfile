@@ -49,6 +49,10 @@ gem "cancancan"
 gem "draper"
 gem "pundit"
 
+gem "chartkick"
+
+gem "groupdate"
+
 gem "jquery-rails"
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

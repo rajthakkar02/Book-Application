@@ -4,6 +4,8 @@
 
 import "@hotwired/turbo-rails"
 import "controllers"
+import "chartkick"
+import "Chart.bundle"
 
 document.addEventListener("DOMContentLoaded", function () {
     const bookSelect = document.getElementById("book_select");
