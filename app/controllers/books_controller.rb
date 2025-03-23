@@ -3,6 +3,7 @@ class BooksController < ApplicationController
 
   def new
     @book = Book.new
+    @book.user_id = current_user.id
   end
 
   def create
@@ -23,6 +24,7 @@ class BooksController < ApplicationController
 
   def edit
     @book = Book.find(params[:id])
+    @book.user_id = current_user.id
     if @book.user != current_user
       flash[:alert] = "You are not authorized to edit this book"
       redirect_to root_path

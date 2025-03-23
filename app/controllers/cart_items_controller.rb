@@ -3,8 +3,8 @@ class CartItemsController < ApplicationController
 
   def create
     book = BookSeller.find_by(book_id: params[:book_id])
-    if @current_cart.cart_items.find_by(book_seller_id: book.id).present?
-      cart_item = @current_cart.cart_items.find_by(book_seller_id: book.id)
+    cart_item = @current_cart.cart_items.find_by(book_seller_id: book.id)
+    if cart_item.present?
       cart_item.update(quantity: cart_item.quantity + 1)
       book.update(quantity: book.quantity - 1)
       flash[:notice] = "Book added to your cart!"

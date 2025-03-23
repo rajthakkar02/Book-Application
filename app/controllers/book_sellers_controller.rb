@@ -7,6 +7,7 @@ class BookSellersController < ApplicationController
 
   def new
     @book_seller = BookSeller.new
+    @book_seller.user_id = current_user.id
   end
 
   def create
@@ -25,13 +26,14 @@ class BookSellersController < ApplicationController
 
   def edit
     @book_seller = BookSeller.find(params[:id])
+    @book_seller.user_id = current_user.id
   end
 
   def update
     @book_seller = BookSeller.find(params[:id])
     if @book_seller.update(book_seller_params)
       flash[:notice] = "Book Seller updated successfully"
-      redirect_to root_path
+      redirect_to book_sellers_path
     else
       render :edit
     end

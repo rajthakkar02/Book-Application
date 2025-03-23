@@ -1,6 +1,8 @@
-<% if obj.errors.any? %>
+<% if obj && obj.errors.any? %>
   <div class="alert alert-danger alert-dismissible fade show" role="alert">
-    <h4 class="alert-heading">Oops! Something went wrong and we couldn't save your <%= obj.class.name.downcase %>. Please address the following issues:</h4>
+    <h4 class="alert-heading">
+      Oops! <%= pluralize(obj.errors.count, "error") %> prevented saving your <%= obj.model_name.human.downcase %>:
+    </h4>
     <ul>
       <% obj.errors.full_messages.each do |error| %>
         <li><%= error %></li>

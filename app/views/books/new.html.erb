@@ -1,54 +1,7 @@
 <% if user_signed_in? && current_user.role == "author" %>
+  <%= link_to raw('<i class="fa-solid fa-arrow-left fa-xl"></i>'), root_path %>
   <h2 class="my-3">Add Book</h2>
-  <%= render "shared/error" , obj: @book %>
-  <%= form_with model: @book, local: true do |form| %>
-    <div class="form-group mb-3">
-      <%= form.label :book_name, "Book Name" , class: "form-label" %>
-      <%= form.text_field :book_name , class: "form-control" , required: true %>
-    </div>
 
-    <div class="form-group mb-3">
-      <%= form.label :book_image , "Book Image" , class: "form-label" %>
-      <%= form.file_field :book_image , class: "form-control" , required: true %>
-    </div>
-
-    <div class="form-group mb-3">
-      <%= form.label :MRP, "Maximum Retail Price (MRP)" ,class: "form-label"%>
-      <%= form.number_field :MRP ,class: "form-control" , min: 1 , required: true %>
-    </div>
-
-    <div class="form-group mb-3">
-      <%= form.label :pages, "Number of Pages" , class: "form-label" %>
-      <%= form.number_field :pages , class: "form-control" , min: 1, required: true %>
-    </div>
-
-    <div class="form-group mb-3">
-      <%= form.label :publisher_name, "Publisher Name", class: "form-label" %>
-      <%= form.text_field :publisher_name , class: "form-control" , required: true %>
-    </div>
-
-    <div class="form-group mb-3">
-      <%= form.label :publication_date, "Publication Date" , class: "form-label" %>
-      <%= form.date_field :publication_date , class: "form-control" , required: true  %>
-    </div>
-
-    <div class="form-group mb-3">
-      <%= form.label :language, "Language" , class: "form-label" %>
-      <%= form.text_field :language , class: "form-control" , required: true %>
-    </div>
-
-    <div class="form-group mb-3">
-      <%= form.label :description, "Description", class: "form-label" %>
-      <%= form.text_area :description, rows: 4, cols: 50 , class: "form-control" , required: true %>
-    </div>
-
-    <div class="form-group mb-3">
-      <%= form.hidden_field :user_id, value: current_user.id, class: "form-control" %>
-    </div>
-
-    <div class="form-group mb-3">
-      <%= form.submit "Save Book", class: "form-control btn btn-primary" %>
-    </div>
-  <% end %>
+  <%= render "form" %>
 
 <% end %>
