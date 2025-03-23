@@ -1,67 +1,70 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary mb-4">
-  <div class="container-fluid">
-    <%= link_to "Book Store" , root_path , class: "navbar-brand text-decoration-none fs-3 " %>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm py-3 mb-4">
+  <div class="container">
+    <%= link_to "Book Store", root_path, class: "navbar-brand fw-bold text-primary fs-3" %>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav me-auto">
         <li class="nav-item">
-          <%= link_to "Home" , root_path , class: "nav-link active" %>
+          <%= link_to "Home", root_path, class: "nav-link" %>
         </li>
-        <li class="nav-item">
-          <% if user_signed_in? && current_user.role == "author" %>
-            <%= link_to "Add Book" , new_book_path , class: "nav-link" %>
-          <% elsif user_signed_in? && current_user.role == "seller" %>
-            <%= link_to "Books" , book_sellers_path , class: "nav-link" %>
-          <% elsif user_signed_in? && current_user.role == "customer" %>
-            <%= link_to "Order" , orders_path , class: "nav-link" %>
-          <% end %>
-        </li>
-        <li class="nav-item">
-          <% if user_signed_in? && current_user.role == "seller" %>
-            <%= link_to "Add Book" , new_book_seller_path , class: "nav-link" %>
-          <% end %>
-        </li>
-        <li class="nav-item">
-          <% if user_signed_in? && current_user.role == "seller" %>
-            <%= link_to "Orders" , orders_path , class: "nav-link" %>
-          <% end %>
-        </li>
+
         <% if user_signed_in? %>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              My Account
-            </a>
-            <ul class="dropdown-menu">
-              <li> <%= link_to "Your Profile" , edit_user_registration_path , class: "dropdown-item"%></li>
-              <% if current_user.role == "customer" %>
-                <li><%= link_to "Address" , addresses_path , class: "dropdown-item" %></li>
-                <li><%= link_to "Add Address" , new_address_path , class: "dropdown-item" %></li>
-              <% end %>
-            </ul>
-          </li>
+          <% if current_user.role == "author" %>
+            <li class="nav-item"><%= link_to "Add Book", new_book_path, class: "nav-link" %></li>
+          <% elsif current_user.role == "seller" %>
+            <li class="nav-item"><%= link_to "Books", book_sellers_path, class: "nav-link" %></li>
+            <li class="nav-item"><%= link_to "Add Book", new_book_seller_path, class: "nav-link" %></li>
+            <li class="nav-item"><%= link_to "Orders", orders_path, class: "nav-link" %></li>
+          <% elsif current_user.role == "customer" %>
+            <li class="nav-item"><%= link_to "Orders", orders_path, class: "nav-link" %></li>
+          <% end %>
         <% end %>
       </ul>
-      <form class="d-flex" role="search">
+
+      <ul class="navbar-nav">
         <% if user_signed_in? %>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="accountDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fa-solid fa-user-circle fa-lg text-primary"></i> My Account
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="accountDropdown">
+              <li><%= link_to "Your Profile", edit_user_registration_path, class: "dropdown-item" %></li>
+              <% if current_user.role == "customer" %>
+                <li><%= link_to "Addresses", addresses_path, class: "dropdown-item" %></li>
+                <li><%= link_to "Add Address", new_address_path, class: "dropdown-item" %></li>
+              <% end %>
+              <li><%= link_to "Log out", destroy_user_session_path, data: { turbo_method: "delete" }, class: "dropdown-item text-danger" %></li>
+            </ul>
+          </li>
+
           <% if current_user.role == "customer" %>
-            <%= link_to cart_path, class: "btn btn-light btn-md me-3" do %>
-              <i class="fa-solid fa-bag-shopping fa-2xl"></i>
-            <% end %>
+            <li class="nav-item">
+              <%= link_to cart_path, class: "btn btn-outline-secondary me-3" do %>
+                <i class="fa-solid fa-shopping-cart fa-lg"></i>
+              <% end %>
+            </li>
           <% end %>
+
           <% if current_user.role == "author" && action_name == "index" %>
-            <i class="fa-solid fa-star fa-xl me-4  pt-3" style="color: #087ed9;"> <%= @rating %></i>
+            <li class="nav-item d-flex align-items-center me-3">
+              <span class="badge bg-warning text-dark p-2 rounded-pill d-flex align-items-center">
+                <i class="fa-solid fa-star me-1"></i> <strong class="fs-6"><%= @rating %></strong>
+              </span>
+            </li>
           <% end %>
-          <%= link_to "Log out", destroy_user_session_path , data: { turbo_method: "delete" }, class: "btn btn-danger text-decoration-none" %>
         <% else %>
-          <%= link_to cart_path, class: "btn btn-light btn-md me-3" do %>
-            <i class="fa-solid fa-bag-shopping fa-2xl"></i>
-          <% end %>
-          <%= link_to "Sign up" , new_user_registration_path, class: "btn btn-primary me-2 text-decoration-none" %>
-          <%= link_to "Login" , user_session_path , class: "btn btn-warning text-decoration-none"%>
+          <li class="nav-item">
+            <%= link_to cart_path, class: "btn btn-outline-secondary me-3" do %>
+              <i class="fa-solid fa-shopping-cart fa-lg"></i>
+            <% end %>
+          </li>
+          <li class="nav-item"><%= link_to "Sign Up", new_user_registration_path, class: "btn btn-primary me-2" %></li>
+          <li class="nav-item"><%= link_to "Login", user_session_path, class: "btn btn-warning" %></li>
         <% end %>
-      </form>
+      </ul>
     </div>
   </div>
 </nav>
