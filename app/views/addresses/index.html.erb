@@ -11,7 +11,7 @@
         <p class="card-text mt-0 mb-3"><%= address.pincode %></p>
       </address>
 
-      <%= link_to "Update Address" , edit_address_path(address) , class: "btn btn-primary" %>
+      <%= link_to "Edit Address" , edit_address_path(address) , class: "btn btn-primary" %>
       <%= link_to "Delete Address" , address_path(address) , data: {turbo_method: "delete" , turbo_confirm: "Are you sure?" } , class: "btn btn-danger mt-3" %>
     </div>
   </div>

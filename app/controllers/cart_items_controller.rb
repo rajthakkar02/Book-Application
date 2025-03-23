@@ -23,7 +23,7 @@ class CartItemsController < ApplicationController
     book.update(quantity: book.quantity + book_item.quantity)
     book_item.destroy
     flash[:notice] = "Cart Item deleted successfully"
-    redirect_to root_path
+    redirect_to cart_path
   end
 
   def update
